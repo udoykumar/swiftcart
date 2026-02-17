@@ -15,8 +15,8 @@ async function getAllProducts() {
     allProducts = data;
     displayProducts(allProducts);
   } catch (error) {
-    console.log("Products load হচ্ছে না:", error);
-    alert("দুঃখিত! Products load করতে সমস্যা হচ্ছে।");
+    console.log("Products don't loading", error);
+    alert("Products loading failed");
   }
 }
 async function getAllCategories() {
@@ -34,7 +34,7 @@ async function getAllCategories() {
       categoryContainer.appendChild(button);
     });
   } catch (error) {
-    console.log("Categories load হচ্ছে না:", error);
+    console.log("Categories don't loading", error);
   }
 }
 async function getProductsByCategory(categoryName, clickedButton) {
@@ -53,7 +53,7 @@ async function getProductsByCategory(categoryName, clickedButton) {
     const products = await response.json();
     displayProducts(products);
   } catch (error) {
-    console.log("Category products load হচ্ছে না:", error);
+    console.log("Category products don't loading", error);
   }
 }
 async function loadTopRatedProducts() {
@@ -109,10 +109,10 @@ async function loadTopRatedProducts() {
       container.appendChild(productCard);
     });
   } catch (error) {
-    console.log("Top rated products load হচ্ছে না:", error);
+    console.log("Top rated products don't loading", error);
     const container = document.getElementById("top-rated-products");
     container.innerHTML =
-      '<p class="col-span-full text-center text-error">Top rated products load করতে সমস্যা হচ্ছে।</p>';
+      '<p class="col-span-full text-center text-error">Top rated products load problem।</p>';
   }
 }
 function displayProducts(productsList) {
@@ -206,8 +206,8 @@ async function showProductDetails(productId) {
         `;
     document.getElementById("product_modal").showModal();
   } catch (error) {
-    console.log("Product details load হচ্ছে না:", error);
-    showMessage("Product details দেখাতে সমস্যা হচ্ছে", "error");
+    console.log("Product details don't loading", error);
+    showMessage("Product details  don't loading", "error");
   }
 }
 function addProductToCart(productId) {
@@ -236,7 +236,7 @@ function addProductToCart(productId) {
   }
   updateCartDisplay();
   saveCartToStorage();
-  showMessage("Product cart এ add হয়েছে!", "success");
+  showMessage("Product added", "success");
 }
 function removeFromCart(productId) {
   shoppingCart = shoppingCart.filter(function (item) {
@@ -244,7 +244,7 @@ function removeFromCart(productId) {
   });
   updateCartDisplay();
   saveCartToStorage();
-  showMessage("Product cart থেকে remove হয়েছে", "info");
+  showMessage("Product remove successfully", "info");
 }
 function changeQuantity(productId, change) {
   const item = shoppingCart.find(function (cartItem) {
@@ -287,8 +287,8 @@ function showCartItems() {
     container.innerHTML = `
             <div class="empty-cart">
                 <i class="fas fa-shopping-cart text-6xl mb-4"></i>
-                <p class="text-xl">আপনার cart খালি আছে</p>
-                <p class="text-sm">কিছু products add করুন!</p>
+                <p class="text-xl">cart is empty</p>
+                <p class="text-sm">Product added please</p>
             </div>
         `;
     return;
@@ -377,7 +377,7 @@ function handleNewsletter(event) {
   event.preventDefault();
   const emailInput = event.target.querySelector('input[type="email"]');
   const email = emailInput.value;
-  showMessage("ধন্যবাদ! " + email + " দিয়ে subscribe করা হয়েছে!", "success");
+  showMessage("thanks! " + email + " subscribe", "success");
   event.target.reset();
 }
 loadCartFromStorage();
@@ -406,7 +406,7 @@ window.addEventListener("load", function () {
 
 function checkout() {
   if (shoppingCart.length === 0) {
-    showMessage("আপনার cart খালি আছে! কিছু products add করুন।", "warning");
+    showMessage("added products", "warning");
     return;
   }
   let totalAmount = 0;
@@ -418,8 +418,7 @@ function checkout() {
   updateCartDisplay();
   toggleCart();
   showMessage(
-    "🎉 অভিনন্দন! আপনার order সফলভাবে সম্পন্ন হয়েছে। মোট: $" +
-      totalAmount.toFixed(2),
+    "🎉 thanks orders purchase $" + totalAmount.toFixed(2),
     "success",
   );
 }
