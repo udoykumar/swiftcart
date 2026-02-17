@@ -12,13 +12,11 @@
       type="text/css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -174,7 +172,6 @@
           id="top-rated-products"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          <!-- Loading spinner -->
           <div class="col-span-full flex justify-center">
             <span
               class="loading loading-spinner loading-lg text-primary"
@@ -189,7 +186,6 @@
       <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold text-center mb-8">Our Products</h2>
 
-        <!-- Category Filters -->
         <div
           class="flex flex-wrap justify-center gap-4 mb-12"
           id="category-filters"
@@ -201,10 +197,7 @@
           >
             All Products
           </button>
-          <!-- Categories will be loaded here dynamically -->
         </div>
-
-        <!-- Products Grid -->
         <div
           id="products-container"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
@@ -317,23 +310,20 @@
             ✕
           </button>
         </form>
-        <div id="modal-content">
-          <!-- Product details will be loaded here -->
-        </div>
+        <div id="modal-content"></div>
       </div>
       <form method="dialog" class="modal-backdrop">
         <button>close</button>
       </form>
     </dialog>
 
-    <!-- Overlay for cart -->
     <div
       id="cart-overlay"
       class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
       onclick="toggleCart()"
     ></div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript  -->
     <script src="script-beginner.js"></script>
   </body>
 </html>
